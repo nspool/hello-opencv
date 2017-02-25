@@ -13,6 +13,15 @@
 #include <iostream>
 #include "opencv2/opencv.hpp"
 
+
+//cv::Vec small, fixed vectors
+//cv::Matx small, fixed matrices
+//cv::Point (x & y) can be cast to Vec but not derived from it. Dot & cross product.
+//cv::Size (width & height), area computation
+//cv::Rect (x & y & width & height), area, upper-left and bottom-right, intersections
+//cv::RotatedRect
+//cv::Scalar a four-dimensional point class, element-wise multiplication, quaternion conjection
+
 int main(int argc, const char * argv[]) {
 
     cv::Mat img = cv::imread(argv[1], -1);
