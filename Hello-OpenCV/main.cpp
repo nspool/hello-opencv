@@ -54,24 +54,27 @@ void createMat() {
 
 int main(int argc, const char * argv[]) {
     
-    createSparse();
+//    createSparse();
 
-//    cv::Mat img = cv::imread(argv[1], -1);
-//    if(img.empty()){
-//        return -1;
-//    }
-//    
-//    cv::namedWindow("Example", cv::WINDOW_AUTOSIZE);
-//    
-//    cv::Mat out;
-//    
-//    cv::imshow("Example", img);
-//    cv::waitKey();
-//
-//    cv::pyrDown(img,out);
-//    cv::imshow("Example", out);
-//    cv::waitKey();
-//    cv::destroyWindow("Example");
-//    
+    cv::Mat imgBackground = cv::imread("a.jpg");
+    cv::Mat imgSprite = cv::imread("b.jpg");
+    
+    if(imgBackground.empty() || imgSprite.empty()){
+        return -1;
+    }
+    
+    cv::Mat roi1(imgBackground, cv::Rect(10,10,258,259));
+    cv::Mat roi2(imgSprite, cv::Rect(0,0,258,259));
+    
+    cv::addWeighted(roi1, 0.5, roi2, 0.5, 0.0, roi1);
+    
+    cv::imshow("Example", imgBackground);
+    cv::waitKey();
+    cv::destroyWindow("Example");
+    
     return 0;
 }
+
+
+
+
