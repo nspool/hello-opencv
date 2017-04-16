@@ -52,6 +52,11 @@ void createMat() {
     cv::Mat m2(3,10,CV_32FC3,cv::Scalar(1.0f, 0.0f, 1.0f));
 }
 
+void solve() {
+    
+}
+
+
 int main(int argc, const char * argv[]) {
     
 //    createSparse();
@@ -63,8 +68,11 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    cv::Mat roi1(imgBackground, cv::Rect(10,10,258,259));
-    cv::Mat roi2(imgSprite, cv::Rect(0,0,258,259));
+    cv::Mat imgOutput;
+    cv::transpose(imgSprite, imgOutput);
+    
+    cv::Mat roi1(imgBackground, cv::Rect(10,10,259,258));
+    cv::Mat roi2(imgOutput, cv::Rect(0,0,259,258));
     
     cv::addWeighted(roi1, 0.5, roi2, 0.5, 0.0, roi1);
     
