@@ -61,32 +61,36 @@ int main(int argc, const char * argv[]) {
     
 //    createSparse();
 
+    auto titleText = std::string("Hello, OpenCV");
+
     // Colours
     cv::Mat imgBackground = cv::imread("a.jpg");
     cv::Mat imgSprite = cv::imread("b.jpg");
+    if(imgBackground.empty() || imgSprite.empty()){
+        std::cerr << "Cannot load images. Aborting." << std::endl;
+        return -1;
+    }
     
     // For borders
     auto white = cv::Scalar(255,255,255,0);
     auto red = cv::Scalar(0,0,255,0);
-    
-    if(imgBackground.empty() || imgSprite.empty()){
-        return -1;
-    }
-    
+
     cv::Mat imgOutput;
-    cv::transpose(imgSprite, imgOutput);
     
+    cv::transpose(imgSprite, imgOutput);
     cv::Mat roi1(imgBackground, cv::Rect(10,10,259,258));
     cv::Mat roi2(imgOutput, cv::Rect(0,0,259,258));
+    
+    // Blend the sprite onto the background image
     
     cv::addWeighted(roi1, 0.5, roi2, 0.5, 0.0, roi1);
     
     // Put a border around the transposed sprite
-    cv::rectangle(imgBackground, cv::Point(10,10), cv::Point(269,268), white);
     
+    cv::rectangle(imgBackground, cv::Point(10,10), cv::Point(269,268), white);
+
     // Draw the title text and place a red border around it
 
-    auto titleText = std::string("Title Appears Here");
     cv::Point textPoint = cv::Point(300,30);
     cv::putText(imgBackground, titleText, textPoint, 0, 1, 0, 2, 4, false);
     int textBaseline = 0;
@@ -94,9 +98,15 @@ int main(int argc, const char * argv[]) {
     textPoint.y = textPoint.y + textBaseline;
     cv::rectangle(imgBackground, textPoint, cv::Point(textPoint.x + textSize.width, textPoint.y - textBaseline - textSize.height - 2), red);
     
-    cv::imshow("Example", imgBackground);
+    // Display the window and draw the image
+    
+    if(cv::startWindowThread() != 0) {
+        std::cerr << "Cannot start window thread. Continuing.." << std::endl;
+    }
+    cv::imshow(titleText, imgBackground);
     cv::waitKey();
-    cv::destroyWindow("Example");
+    
+    cv::destroyAllWindows();
     
     return 0;
 }
