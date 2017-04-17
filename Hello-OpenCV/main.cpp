@@ -61,8 +61,13 @@ int main(int argc, const char * argv[]) {
     
 //    createSparse();
 
+    // Colours
     cv::Mat imgBackground = cv::imread("a.jpg");
     cv::Mat imgSprite = cv::imread("b.jpg");
+    
+    // For borders
+    auto white = cv::Scalar(255,255,255,0);
+    auto red = cv::Scalar(0,0,255,0);
     
     if(imgBackground.empty() || imgSprite.empty()){
         return -1;
@@ -75,6 +80,19 @@ int main(int argc, const char * argv[]) {
     cv::Mat roi2(imgOutput, cv::Rect(0,0,259,258));
     
     cv::addWeighted(roi1, 0.5, roi2, 0.5, 0.0, roi1);
+    
+    // Put a border around the transposed sprite
+    cv::rectangle(imgBackground, cv::Point(10,10), cv::Point(269,268), white);
+    
+    // Draw the title text and place a red border around it
+
+    auto titleText = std::string("Title Appears Here");
+    cv::Point textPoint = cv::Point(300,30);
+    cv::putText(imgBackground, titleText, textPoint, 0, 1, 0, 2, 4, false);
+    int textBaseline = 0;
+    cv::Size textSize = cv::getTextSize(titleText, 0, 1, 2, &textBaseline);
+    textPoint.y = textPoint.y + textBaseline;
+    cv::rectangle(imgBackground, textPoint, cv::Point(textPoint.x + textSize.width, textPoint.y - textBaseline - textSize.height - 2), red);
     
     cv::imshow("Example", imgBackground);
     cv::waitKey();
