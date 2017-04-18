@@ -43,7 +43,6 @@ void createSparse() {
     }
 }
 
-
 void createMat() {
     cv::Mat m;
     m.create(3, 10, CV_32FC3); // Create data area for 3 rows and 10 columns of 3-channel 32-bit floats
@@ -52,8 +51,15 @@ void createMat() {
     cv::Mat m2(3,10,CV_32FC3,cv::Scalar(1.0f, 0.0f, 1.0f));
 }
 
-void solve() {
-    
+
+// Do something when the window is clicked
+void mouseCallback(int event, int x, int y, int flags, void* param) {
+    switch(event) {
+        case cv::EVENT_LBUTTONUP:
+            return;
+        default:
+            break;
+    }
 }
 
 
@@ -104,8 +110,12 @@ int main(int argc, const char * argv[]) {
         std::cerr << "Cannot start window thread. Continuing.." << std::endl;
     }
     cv::imshow(titleText, imgBackground);
-    cv::waitKey();
     
+    // Mouse callback
+    cv::setMouseCallback(titleText, mouseCallback, nullptr);
+    
+    // Wait for any keypress and then close
+    cv::waitKey();
     cv::destroyAllWindows();
     
     return 0;
