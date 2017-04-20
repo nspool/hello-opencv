@@ -62,25 +62,41 @@ void mouseCallback(int event, int x, int y, int flags, void* param) {
     }
 }
 
-
-int main(int argc, const char * argv[]) {
+// Open a video and read it frame-by-frame
+void openVideo() {
     
-//    createSparse();
+    std::string titleText = std::string("Video Capture");
+    
+    cv::Mat frame;
+    
+    // VideoCapture functor
+    
+    cv::VideoCapture cap("1.mp4");
 
+//    while(true) {
+        cap.read(frame);
+        if(frame.empty()) { return; }
+        cv::imshow(titleText, frame);
+//    }
+}
+
+
+void openImages() {
+    
     auto titleText = std::string("Hello, OpenCV");
-
+    
     // Colours
     cv::Mat imgBackground = cv::imread("a.jpg");
     cv::Mat imgSprite = cv::imread("b.jpg");
     if(imgBackground.empty() || imgSprite.empty()){
         std::cerr << "Cannot load images. Aborting." << std::endl;
-        return -1;
+        return;
     }
     
     // For borders
     auto white = cv::Scalar(255,255,255,0);
     auto red = cv::Scalar(0,0,255,0);
-
+    
     cv::Mat imgOutput;
     
     cv::transpose(imgSprite, imgOutput);
@@ -94,9 +110,9 @@ int main(int argc, const char * argv[]) {
     // Put a border around the transposed sprite
     
     cv::rectangle(imgBackground, cv::Point(10,10), cv::Point(269,268), white);
-
+    
     // Draw the title text and place a red border around it
-
+    
     cv::Point textPoint = cv::Point(300,30);
     cv::putText(imgBackground, titleText, textPoint, 0, 1, 0, 2, 4, false);
     int textBaseline = 0;
@@ -104,11 +120,6 @@ int main(int argc, const char * argv[]) {
     textPoint.y = textPoint.y + textBaseline;
     cv::rectangle(imgBackground, textPoint, cv::Point(textPoint.x + textSize.width, textPoint.y - textBaseline - textSize.height - 2), red);
     
-    // Display the window and draw the image
-    
-    if(cv::startWindowThread() != 0) {
-        std::cerr << "Cannot start window thread. Continuing.." << std::endl;
-    }
     cv::imshow(titleText, imgBackground);
     
     // Mouse callback
@@ -117,10 +128,22 @@ int main(int argc, const char * argv[]) {
     // Wait for any keypress and then close
     cv::waitKey();
     cv::destroyAllWindows();
-    
-    return 0;
 }
 
 
-
+int main(int argc, const char * argv[]) {
+    
+    // Display the window and draw the image
+    if(cv::startWindowThread() != 0) {
+        std::cerr << "Cannot start window thread. Continuing.." << std::endl;
+    }
+    
+    openVideo();
+    cv::waitKey();
+    cv::destroyAllWindows();
+//    openImages();
+    
+    return 0;
+    
+}
 
