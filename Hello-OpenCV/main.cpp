@@ -13,6 +13,7 @@
 #include <iostream>
 #include "opencv2/opencv.hpp"
 
+std::string titleText = std::string("Hello, OpenCV");
 
 //cv::Vec small, fixed vectors
 //cv::Matx small, fixed matrices
@@ -65,25 +66,22 @@ void mouseCallback(int event, int x, int y, int flags, void* param) {
 // Open a video and read it frame-by-frame
 void openVideo() {
     
-    std::string titleText = std::string("Video Capture");
-    
     cv::Mat frame;
     
     // VideoCapture functor
-    
+    cv::namedWindow(titleText);
     cv::VideoCapture cap("1.mp4");
-
-//    while(true) {
+    
+    do {
         cap.read(frame);
-        if(frame.empty()) { return; }
+        if(frame.empty()) { break; }
         cv::imshow(titleText, frame);
-//    }
+        cv::waitKey();
+    } while(true);
 }
 
 
 void openImages() {
-    
-    auto titleText = std::string("Hello, OpenCV");
     
     // Colours
     cv::Mat imgBackground = cv::imread("a.jpg");
@@ -127,7 +125,6 @@ void openImages() {
     
     // Wait for any keypress and then close
     cv::waitKey();
-    cv::destroyAllWindows();
 }
 
 
@@ -138,10 +135,10 @@ int main(int argc, const char * argv[]) {
         std::cerr << "Cannot start window thread. Continuing.." << std::endl;
     }
     
+    //    openImages();
     openVideo();
-    cv::waitKey();
+    
     cv::destroyAllWindows();
-//    openImages();
     
     return 0;
     
