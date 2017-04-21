@@ -66,18 +66,31 @@ void mouseCallback(int event, int x, int y, int flags, void* param) {
 // Open a video and read it frame-by-frame
 void openVideo() {
     
-    cv::Mat frame;
+    cv::Mat frame, prevFrame;
+    int frameCount = 0;
     
     // VideoCapture functor
     cv::namedWindow(titleText);
     cv::VideoCapture cap("1.mp4");
     
-    do {
-        cap.read(frame);
-        if(frame.empty()) { break; }
+    cap.read(frame);
+    
+    std::cout << "rows: " << frame.rows << " cols: " << frame.cols << std::endl;
+
+    while(!frame.empty()) {
+        
+        frameCount++;
+        
         cv::imshow(titleText, frame);
+        
+        std::cout << frameCount << std::endl;
+        
         cv::waitKey();
-    } while(true);
+        
+        prevFrame = frame;
+        
+        cap.read(frame);
+    }
 }
 
 
