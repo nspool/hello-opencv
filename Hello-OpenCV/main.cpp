@@ -67,30 +67,43 @@ void mouseCallback(int event, int x, int y, int flags, void* param) {
 void openVideo() {
     
     cv::Mat frame, prevFrame;
+    
     int frameCount = 0;
     
     // VideoCapture functor
     cv::namedWindow(titleText);
     cv::VideoCapture cap("1.mp4");
     
-    cap.read(frame);
-    
+    cap >> prevFrame;
+    cap >> frame;
+
     std::cout << "rows: " << frame.rows << " cols: " << frame.cols << std::endl;
 
     while(!frame.empty()) {
         
-        frameCount++;
+        frameCount += 2;
+
+        // cv::imshow(titleText, frame);
+        // cv::waitKey();
         
-        cv::imshow(titleText, frame);
+        if(!prevFrame.empty()) {
+
+            cv::Mat deltaFrame;
+
+            deltaFrame = prevFrame - frame;
+            
+            cv::Scalar deltaSum = cv::sum(deltaFrame);
+            
+            std::cout << deltaSum << std::endl;
+        }
         
-        std::cout << frameCount << std::endl;
+        cap >> prevFrame;
+        cap >> frame;
         
-        cv::waitKey();
-        
-        prevFrame = frame;
-        
-        cap.read(frame);
     }
+    
+    std::cout << frameCount << std::endl;
+
 }
 
 
