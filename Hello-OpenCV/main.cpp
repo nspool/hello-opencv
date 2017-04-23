@@ -82,9 +82,6 @@ void openVideo() {
     while(!frame.empty()) {
         
         frameCount += 2;
-
-        // cv::imshow(titleText, frame);
-        // cv::waitKey();
         
         if(!prevFrame.empty()) {
 
@@ -93,9 +90,14 @@ void openVideo() {
             deltaFrame = prevFrame - frame;
             
             cv::Scalar deltaSum = cv::sum(deltaFrame);
-            
+            cv::OutputArray output = cv::OutputArray(deltaFrame);
+//            cv::findNonZero(deltaFrame, output);
             std::cout << deltaSum << std::endl;
+
         }
+        
+        //            cv::imshow(titleText, deltaFrame);
+        //            cv::waitKey();
         
         cap >> prevFrame;
         cap >> frame;
