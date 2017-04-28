@@ -70,42 +70,49 @@ void openVideo() {
     
     int frameCount = 0;
     
-    // VideoCapture functor
+    // NB: create the window *before* opening the video, otherwise will encounter
+    // "current event queue and the main event queue are not the same" bug.
     cv::namedWindow(titleText);
+    
+    // VideoCapture functor
     cv::VideoCapture cap("1.mp4");
     
-    cap >> prevFrame;
     cap >> frame;
-
+    
     std::cout << "rows: " << frame.rows << " cols: " << frame.cols << std::endl;
-
+    
+    // Print out the location of the pixels that have changed between frames
+    
     while(!frame.empty()) {
         
-        frameCount += 2;
+        frameCount++;
+        
+        cv::Mat deltaFrame;
         
         if(!prevFrame.empty()) {
-
-            cv::Mat deltaFrame;
-
-            deltaFrame = prevFrame - frame;
             
-            cv::Scalar deltaSum = cv::sum(deltaFrame);
-            cv::OutputArray output = cv::OutputArray(deltaFrame);
-//            cv::findNonZero(deltaFrame, output);
-            std::cout << deltaSum << std::endl;
-
+            cv::cvtColor(prevFrame - frame, deltaFrame, CV_BGR2GRAY);
+            
+            int c = cv::countNonZero(deltaFrame);
+            
+            if(c > 0) {
+                std::cout << frameCount << std::endl;
+                std::vector<cv::Point> locations;
+                cv::findNonZero(deltaFrame, locations);
+                for(cv::Point& l : locations) {
+                    std::cout << l << std::endl;
+                }
+            }
+            cv::imshow(titleText, deltaFrame);
+            cv::waitKey();
         }
         
-        //            cv::imshow(titleText, deltaFrame);
-        //            cv::waitKey();
-        
-        cap >> prevFrame;
+        frame.copyTo(prevFrame);
         cap >> frame;
-        
     }
     
     std::cout << frameCount << std::endl;
-
+    
 }
 
 
