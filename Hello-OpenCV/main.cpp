@@ -162,8 +162,46 @@ void openImages() {
     cv::waitKey();
 }
 
+void scalarPlay() {
+    auto blue = cv::Scalar(255,0,0,0);
+    auto red = cv::Scalar(0,0,255,0);
+    auto green = cv::Scalar(0,255,0,0);
+    
+    // How to programmatically determine which of these scalars are the "blueist" ?
+    auto c1 = cv::Scalar(254, 1,1,0 );
+    auto c2 = cv::Scalar(1, 254,1,0);
+    auto c3 = cv::Scalar(1, 1,254,0);
+
+    // convert to a mar
+    cv::Mat bluev = (cv::Mat_<double>(4,1) << blue[0], blue[1], blue[2], 0);
+    cv::Mat redv = (cv::Mat_<double>(4,1) << red[0], red[1], red[2], 0);
+    cv::Mat greenv = (cv::Mat_<double>(4,1) << green[0], green[1], green[2], 0);
+
+//    cv::Mat v1 = (cv::Mat_<double>(4,1) << c1[0], c1[1], c1[2], 0);
+    cv::Mat v1 = cv::Mat(c1);
+    cv::Mat v2 = (cv::Mat_<double>(4,1) << c2[0], c2[1], c2[2], 0);
+    cv::Mat v3 = (cv::Mat_<double>(4,1) << c3[0], c3[1], c3[2], 0);
+
+    cv::Mat diff = cv::Mat_<double>(4,1);
+
+    cv::absdiff(v1, bluev, diff);
+    std::cout << cv::sum(diff) << std::endl;
+    
+    cv::absdiff(v2, bluev, diff);
+    std::cout << cv::sum(diff) << std::endl;
+    
+    cv::absdiff(v3, bluev, diff);
+    std::cout << cv::sum(diff) << std::endl;
+}
 
 int main(int argc, const char * argv[]) {
+    
+    scalarPlay();
+    
+    std::cout << "done" << std::endl;
+
+    return 0;
+    
     
     // Display the window and draw the image
     if(cv::startWindowThread() != 0) {
