@@ -192,22 +192,37 @@ void scalarPlay() {
     }
 }
 
-int main(int argc, const char * argv[]) {
+void removeBackground() {
     
-    scalarPlay();
+    // load test image
+    cv::Mat image = cv::imread("b.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+    if(image.empty()){
+        std::cerr << "Cannot load images. Aborting." << std::endl;
+        return;
+    }
     
-    std::cout << "done" << std::endl;
+    // Set a threshold that leaves only the outline of the foreground objects
+//    cv::threshold(image, image, 10, 255, CV_THRESH_BINARY);
+    cv::adaptiveThreshold(image, image, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY, 21, 50);
+//    cv::fastNlMeansDenoising(image, image);
+    cv::Mat k = cv::Mat::eye(2, 2, 0);
+    cv::dilate(image, image, k);
+    
+    cv::imshow(titleText, image);
+    cv::waitKey();
+}
 
-    return 0;
-    
+
+int main(int argc, const char * argv[]) {
     
     // Display the window and draw the image
     if(cv::startWindowThread() != 0) {
         std::cerr << "Cannot start window thread. Continuing.." << std::endl;
     }
     
-    //    openImages();
-    openVideo();
+    // openImages();
+    // openVideo();
+    removeBackground();
     
     cv::destroyAllWindows();
     
