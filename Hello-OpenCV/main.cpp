@@ -195,7 +195,9 @@ void scalarPlay() {
 void removeBackground() {
     
     // load test image
-    cv::Mat image = cv::imread("b.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image = cv::imread("b.jpg", cv::IMREAD_GRAYSCALE);
+//    cv::Mat colourImage = cv::imread("b.jpg");
+
     if(image.empty()){
         std::cerr << "Cannot load images. Aborting." << std::endl;
         return;
@@ -208,7 +210,29 @@ void removeBackground() {
     cv::Mat k = cv::Mat::eye(2, 2, 0);
     cv::dilate(image, image, k);
     
+    // Flood Fill?
+    
     cv::imshow(titleText, image);
+    cv::waitKey();
+}
+
+void houghLines() {
+    // Hough Lines
+    
+    cv::Mat imageIn, imageOut;
+    
+    imageIn = cv::imread("b.jpg", cv::IMREAD_COLOR);
+    
+    cv::cvtColor(imageIn, imageOut, cv::COLOR_BGR2GRAY);
+    std::vector<cv::Point2d> lines;
+    cv::HoughLines(imageOut, lines, 5, 1.5, 0);
+    
+    for(auto &line: lines) {
+//        line.
+//        cv::line(imageIn, line->p, <#Point pt2#>, <#const Scalar &color#>)
+    }
+    
+    cv::imshow(titleText, imageOut);
     cv::waitKey();
 }
 
@@ -222,7 +246,9 @@ int main(int argc, const char * argv[]) {
     
     // openImages();
     // openVideo();
-    removeBackground();
+    // removeBackground();
+    
+    houghLines();
     
     cv::destroyAllWindows();
     
