@@ -221,18 +221,21 @@ void houghLines() {
     
     cv::Mat imageIn, imageOut;
     
-    imageIn = cv::imread("b.jpg", cv::IMREAD_COLOR);
+    imageIn = cv::imread("a.jpg", cv::IMREAD_COLOR);
     
     cv::cvtColor(imageIn, imageOut, cv::COLOR_BGR2GRAY);
-    std::vector<cv::Point2d> lines;
-    cv::HoughLines(imageOut, lines, 5, 1.5, 0);
     
-    for(auto &line: lines) {
-//        line.
-//        cv::line(imageIn, line->p, <#Point pt2#>, <#const Scalar &color#>)
+    std::vector<cv::Vec4i> lines;
+    
+    cv::Canny(imageOut, imageOut, 50, 200, 3);
+    
+    cv::HoughLinesP(imageOut, lines, 1, CV_PI/180, 10, 10, 0 );
+    
+    for(auto &l: lines) {
+        cv::line(imageIn, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(0,0,255), 1, cv::LineTypes::LINE_4);
     }
     
-    cv::imshow(titleText, imageOut);
+    cv::imshow(titleText, imageIn);
     cv::waitKey();
 }
 
