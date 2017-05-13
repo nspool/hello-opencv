@@ -217,6 +217,7 @@ void removeBackground() {
 }
 
 void houghLines() {
+    
     // Hough Lines
     
     cv::Mat imageIn, imageOut;
@@ -236,7 +237,22 @@ void houghLines() {
     }
     
     cv::imshow(titleText, imageIn);
-    cv::waitKey();
+
+}
+
+void watershed() {
+    
+    cv::Mat imageIn, imageProc, markers;
+
+    imageIn = cv::imread("b.jpg");
+    imageProc.create(imageIn.rows, imageIn.cols, CV_8UC3);
+    markers.create(imageIn.rows, imageIn.cols, CV_32SC1);
+    
+    cv::cvtColor(imageIn, imageProc, CV_8UC3);
+    
+    cv::watershed(imageProc, markers);
+    
+    cv::imshow(titleText, imageProc);
 }
 
 
@@ -250,8 +266,10 @@ int main(int argc, const char * argv[]) {
     // openImages();
     // openVideo();
     // removeBackground();
+//    houghLines();
+    watershed();
     
-    houghLines();
+    cv::waitKey();
     
     cv::destroyAllWindows();
     
