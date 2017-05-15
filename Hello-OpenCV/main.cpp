@@ -216,9 +216,35 @@ void removeBackground() {
     cv::waitKey();
 }
 
-void houghLines() {
+// Histograms
+// Equalise the histogram of a channel of a colour image to normalise brightness
+
+void histograms() {
     
-    // Hough Lines
+    cv::Mat imageBGR, imageYUV;
+    std::vector<cv::Mat> channels;
+    
+    imageBGR = cv::imread("a.jpg");
+    
+    // Convert the image to YUV
+    
+    cv::cvtColor(imageBGR, imageYUV, CV_BGR2YUV);
+    cv::split(imageYUV, channels);
+    
+    // The first channel in YUV is 'luma' or brightness
+    
+    cv::equalizeHist(channels[0], channels[0]);
+    
+    // Convert back to BGR
+    cv::merge(channels, imageYUV);
+    cv::cvtColor(imageYUV, imageBGR, CV_YUV2BGR);
+    
+    cv::imshow(titleText, imageBGR);
+}
+
+// Hough Lines
+
+void houghLines() {
     
     cv::Mat imageIn, imageOut;
     
@@ -269,7 +295,9 @@ int main(int argc, const char * argv[]) {
     // openVideo();
     // removeBackground();
 //    houghLines();
-    watershed();
+//    watershed();
+    
+    histograms();
     
     cv::waitKey();
     
