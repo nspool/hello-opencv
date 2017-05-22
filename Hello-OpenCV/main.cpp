@@ -6,6 +6,11 @@
 //  Copyright © 2017 nspool. All rights reserved.
 //
 
+// # TODO
+// - Put each of the examples in their own classes
+// - 1.mp4: tell exactly on what frame it is different using histogram methods
+
+
 // Because the opencv framework headers don't play well with clang
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
