@@ -16,7 +16,7 @@
 #pragma clang diagnostic ignored "-Wdocumentation"
 
 #include <iostream>
-#include "opencv2/opencv.hpp"
+#include "ImageProcessor.hpp"
 
 std::string titleText = std::string("Hello, OpenCV");
 
@@ -221,31 +221,6 @@ void removeBackground() {
     cv::waitKey();
 }
 
-// Histograms
-// Equalise the histogram of a channel of a colour image to normalise brightness
-
-void histograms() {
-    
-    cv::Mat imageBGR, imageYUV;
-    std::vector<cv::Mat> channels;
-    
-    imageBGR = cv::imread("a.jpg");
-    
-    // Convert the image to YUV
-    
-    cv::cvtColor(imageBGR, imageYUV, CV_BGR2YUV);
-    cv::split(imageYUV, channels);
-    
-    // The first channel in YUV is 'luma' or brightness
-    
-    cv::equalizeHist(channels[0], channels[0]);
-    
-    // Convert back to BGR
-    cv::merge(channels, imageYUV);
-    cv::cvtColor(imageYUV, imageBGR, CV_YUV2BGR);
-    
-    cv::imshow(titleText, imageBGR);
-}
 
 // Hough Lines
 
@@ -302,8 +277,12 @@ int main(int argc, const char * argv[]) {
 //    houghLines();
 //    watershed();
     
-    histograms();
+    auto ip = ImageProcessor();
     
+    auto imageBGR = ip.histogramEqualize();
+    
+    cv::imshow("title", imageBGR);
+
     cv::waitKey();
     
     cv::destroyAllWindows();
