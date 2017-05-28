@@ -40,9 +40,13 @@ cv::Mat ImageProcessor::templateMatching() {
     cv::Mat rabbit = cv::imread("b.jpg");
     cv::Mat output;
     
-    cv::matchTemplate(rabbit, t, output, 1);
+    cv::matchTemplate(rabbit, t, output, cv::TemplateMatchModes::TM_SQDIFF);
+    cv::Point minLoc, maxLoc;
+    cv::minMaxLoc(output, NULL, NULL, &minLoc, &maxLoc);
     
-    return output;
+    cv::rectangle(rabbit, minLoc, maxLoc, 0);
+    
+    return rabbit;
 }
 
 // TODO: Example of using the Earth Mover's Distance to compare histograms

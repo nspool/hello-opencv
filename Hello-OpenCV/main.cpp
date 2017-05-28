@@ -281,9 +281,9 @@ int main(int argc, const char * argv[]) {
     
 //    auto imageBGR = ip.histogramEqualize();
     
-    ip->
+    cv::Mat image = ip.templateMatching();
     
-    cv::imshow("title", imageBGR);
+    cv::imshow("title", image);
 
     cv::waitKey();
     
