@@ -33,3 +33,32 @@ cv::Mat ImageProcessor::histogramEqualize() {
     
     return imageBGR;
 }
+
+cv::Mat ImageProcessor::templateMatching() {
+    
+    cv::Mat t = cv::imread("template.png");
+    cv::Mat rabbit = cv::imread("b.jpg");
+    cv::Mat output;
+    
+    cv::matchTemplate(rabbit, t, output, 1);
+    
+    return output;
+}
+
+// TODO: Example of using the Earth Mover's Distance to compare histograms
+void ImageProcessor::histogramEMD() {
+//    
+//    cv::Mat a = cv::imread("a.jpg");
+//    cv::Mat b = cv::imread("a.jpg");
+//    = cv::EMD(a, b, 2, nullptr, 0, nullptr);
+//    
+    double distance = 0;
+    
+    printf("Earth Mover's Distance: %f\n", distance);
+}
+
+
+// TODO: Back Projection example
+void ImageProcessor::backProjection() {
+    
+}

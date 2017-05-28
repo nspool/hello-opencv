@@ -279,7 +279,9 @@ int main(int argc, const char * argv[]) {
     
     auto ip = ImageProcessor();
     
-    auto imageBGR = ip.histogramEqualize();
+//    auto imageBGR = ip.histogramEqualize();
+    
+    ip->
     
     cv::imshow("title", imageBGR);
 
