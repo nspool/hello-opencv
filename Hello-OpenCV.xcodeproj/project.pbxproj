@@ -14,6 +14,7 @@
 		7393D01E1E51366D0012389A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7393D01D1E51366D0012389A /* main.cpp */; };
 		73B0AC141ED4442E00FCED90 /* VideoProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC121ED4442E00FCED90 /* VideoProcessor.cpp */; };
 		73B0AC171ED4444200FCED90 /* ImageProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC151ED4444200FCED90 /* ImageProcessor.cpp */; };
+		73F59DD81EDC2F4C00A3E0A9 /* canvas.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 73F59DD71EDC2F4600A3E0A9 /* canvas.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,6 +24,7 @@
 			dstPath = .;
 			dstSubfolderSpec = 16;
 			files = (
+				73F59DD81EDC2F4C00A3E0A9 /* canvas.png in CopyFiles */,
 				732DCFE81EDAD6CE009AC9C6 /* template.png in CopyFiles */,
 				7333230B1EA8CDC2009C807E /* 1.mp4 in CopyFiles */,
 				739048971E890E1200EED520 /* a.jpg in CopyFiles */,
@@ -43,6 +45,7 @@
 		73B0AC131ED4442E00FCED90 /* VideoProcessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VideoProcessor.hpp; sourceTree = "<group>"; };
 		73B0AC151ED4444200FCED90 /* ImageProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageProcessor.cpp; sourceTree = "<group>"; };
 		73B0AC161ED4444200FCED90 /* ImageProcessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ImageProcessor.hpp; sourceTree = "<group>"; };
+		73F59DD71EDC2F4600A3E0A9 /* canvas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = canvas.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				732DCFE71EDAD6C5009AC9C6 /* template.png */,
+				73F59DD71EDC2F4600A3E0A9 /* canvas.png */,
 				739048951E890D2600EED520 /* a.jpg */,
 				739048961E890D4400EED520 /* b.jpg */,
 			);

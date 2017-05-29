@@ -6,6 +6,7 @@
 //  Copyright © 2017 nspool. All rights reserved.
 //
 
+#include <vector>
 #include "ImageProcessor.hpp"
 
 // Histograms
@@ -65,4 +66,44 @@ void ImageProcessor::histogramEMD() {
 // TODO: Back Projection example
 void ImageProcessor::backProjection() {
     
+    std::vector<cv::Mat> inputs;
+    std::vector<int> channels;
+    std::vector<float> ranges;
+    cv::Mat backProject;
+
+    // use the canvas as the background
+    cv::Mat canvas = cv::imread("canvas.png");
+    cv::Mat rabbit = cv::imread("b.jpg");
+    
+    inputs.push_back(canvas);
+    ranges.push_back(10);
+    channels.push_back(canvas.channels());
+    
+//    cv::calcBackProject(inputs, &channels, rabbit, backProject, &ranges);
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
