@@ -53,34 +53,53 @@ cv::Mat ImageProcessor::templateMatching() {
 // TODO: Example of using the Earth Mover's Distance to compare histograms
 void ImageProcessor::histogramEMD() {
 //    
-//    cv::Mat a = cv::imread("a.jpg");
-//    cv::Mat b = cv::imread("a.jpg");
+    cv::Mat a = cv::imread("a.jpg");
+    cv::Mat b = cv::imread("a.jpg");
 //    = cv::EMD(a, b, 2, nullptr, 0, nullptr);
-//    
-    double distance = 0;
+//
+    
+    double distance = cv::EMDL1(a,b);;
     
     printf("Earth Mover's Distance: %f\n", distance);
 }
 
 
 // TODO: Back Projection example
-void ImageProcessor::backProjection() {
+cv::Mat ImageProcessor::backProjection() {
     
     std::vector<cv::Mat> inputs;
-    std::vector<int> channels;
-    std::vector<float> ranges;
-    cv::Mat backProject;
+//    std::vector<int> channels;
+////    std::vector<float> ranges;
+//    cv::Mat backProject;
+//
+//    // use the canvas as the background
+//    cv::Mat canvas = cv::imread("canvas.png");
+//    cv::Mat rabbit = cv::imread("b.jpg");
+//    
+//    inputs.push_back(canvas);
+////    ranges.push_back(10);
+////    channels.push_back(canvas.channels());
+//    
+//    cv::Mat output, hist;
+//    int histSize[] = {16, 16, 16};
+////    int channels[] = {0, 1, 2};
+//    channels.push_back(0);
+//    channels.push_back(1);
+//    channels.push_back(2);
+//    const float hRange[] = {0.f, 256.f};
+//    const float* ranges[] = {hRange, hRange, hRange};
+//    int nChannels = 3;
+//    
+////    cv::calcHist(&canvas, 1, channels, cv::noArray(), hist, nChannels, histSize, ranges);
+//
+////    CV_EXPORTS_W void calcBackProject( InputArrayOfArrays images, const std::vector<int>& channels,
+////                                      InputArray hist, OutputArray dst,
+////                                      const std::vector<float>& ranges,
+////                                      double scale );
+////    
+//    cv::calcBackProject(&output, channels, hist, output, ranges, 1.0);
 
-    // use the canvas as the background
-    cv::Mat canvas = cv::imread("canvas.png");
-    cv::Mat rabbit = cv::imread("b.jpg");
-    
-    inputs.push_back(canvas);
-    ranges.push_back(10);
-    channels.push_back(canvas.channels());
-    
-//    cv::calcBackProject(inputs, &channels, rabbit, backProject, &ranges);
-    
+    return output;
 }
 
 

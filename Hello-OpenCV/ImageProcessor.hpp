@@ -18,7 +18,7 @@ class ImageProcessor
 {
 public:
     void histogramEMD();
-    void backProjection();
+    cv::Mat backProjection();
     cv::Mat templateMatching();
     cv::Mat histogramEqualize();
 private:

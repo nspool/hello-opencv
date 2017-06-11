@@ -281,7 +281,11 @@ int main(int argc, const char * argv[]) {
     
 //    auto imageBGR = ip.histogramEqualize();
     
-    cv::Mat image = ip.templateMatching();
+//    cv::Mat image = ip.templateMatching();
+
+//    ip.histogramEMD();
+    
+    cv::Mat image = ip.backProjection();
     
     cv::imshow("title", image);
 
