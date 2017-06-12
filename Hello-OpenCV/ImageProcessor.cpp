@@ -67,38 +67,54 @@ void ImageProcessor::histogramEMD() {
 // TODO: Back Projection example
 cv::Mat ImageProcessor::backProjection() {
     
-    std::vector<cv::Mat> inputs;
-//    std::vector<int> channels;
+    std::vector<cv::Mat> images;
+    cv::Mat rabbit = cv::imread("b.jpg");
+    images.push_back(rabbit);
+    
+    // Canvas contains the color of the background canvas
+    cv::Mat canvas = cv::imread("canvas.png");
+    
+    std::vector<int> channels;
+    channels.push_back(0);
+    channels.push_back(1);
+    channels.push_back(2);
+
+    std::vector<int> histSize;
+    histSize.push_back(16);
+    histSize.push_back(16);
+    histSize.push_back(16);
+    
 ////    std::vector<float> ranges;
 //    cv::Mat backProject;
 //
-//    // use the canvas as the background
-//    cv::Mat canvas = cv::imread("canvas.png");
-//    cv::Mat rabbit = cv::imread("b.jpg");
-//    
-//    inputs.push_back(canvas);
+//
+//
 ////    ranges.push_back(10);
 ////    channels.push_back(canvas.channels());
 //    
 //    cv::Mat output, hist;
 //    int histSize[] = {16, 16, 16};
 ////    int channels[] = {0, 1, 2};
-//    channels.push_back(0);
-//    channels.push_back(1);
-//    channels.push_back(2);
 //    const float hRange[] = {0.f, 256.f};
 //    const float* ranges[] = {hRange, hRange, hRange};
-//    int nChannels = 3;
-//    
-////    cv::calcHist(&canvas, 1, channels, cv::noArray(), hist, nChannels, histSize, ranges);
+    
+    std::vector<float> ranges;
+    ranges.push_back(0);
+    ranges.push_back(0);
+    ranges.push_back(0);
+    ranges.push_back(0);
+
+    cv::Mat hist;
+    cv::calcHist({canvas}, channels, cv::noArray(), hist, histSize, ranges);
 //
 ////    CV_EXPORTS_W void calcBackProject( InputArrayOfArrays images, const std::vector<int>& channels,
 ////                                      InputArray hist, OutputArray dst,
 ////                                      const std::vector<float>& ranges,
 ////                                      double scale );
 ////    
-//    cv::calcBackProject(&output, channels, hist, output, ranges, 1.0);
 
+    cv::Mat output;
+    cv::calcBackProject({rabbit}, channels, hist, output, ranges, 1.0);
     return output;
 }
 
