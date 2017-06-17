@@ -32,6 +32,21 @@ cv::Mat ImageProcessor::contourFinding() {
     return output;
 }
 
+// Fast connected component analysis
+cv::Mat ImageProcessor::connectedComponentAnalysis() {
+
+    cv::Mat rabbit_thresh, labels, stats, centroids;
+    cv::Mat rabbitGrey = cv::imread("b.jpg", cv::IMREAD_GRAYSCALE);
+    
+    cv::threshold(rabbitGrey, rabbit_thresh, 128, 255, cv::THRESH_BINARY);
+    
+    int componentCount = cv::connectedComponentsWithStats(rabbit_thresh, labels, stats, centroids);
+
+    std::cout << "Number of components detected: " << componentCount << std::endl;
+    
+    return rabbit_thresh;
+}
+
 // Histograms
 // Equalise the histogram of a channel of a colour image to normalise brightness
 

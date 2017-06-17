@@ -22,4 +22,5 @@ public:
     cv::Mat backProjection();
     cv::Mat templateMatching();
     cv::Mat histogramEqualize();
+    cv::Mat connectedComponentAnalysis();
 };
