@@ -9,6 +9,29 @@
 #include <vector>
 #include "ImageProcessor.hpp"
 
+cv::Mat ImageProcessor::contourFinding() {
+    
+    std::vector<cv::Vec4i> hierarchy;
+    std::vector<std::vector<cv::Point>> contours;
+    cv::Mat output;
+//    cv::Mat rabbitColour = cv::imread("b.jpg");
+    cv::Mat rabbitGrey = cv::imread("b.jpg", cv::IMREAD_GRAYSCALE);
+
+    cv::Canny(rabbitGrey, output, 120, 240, 7);
+    
+    // RETR_EXTERNAL should only give the major 'external' contours
+    cv::findContours(output, contours, hierarchy,  cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    
+    cv::Mat drawing = cv::Mat::zeros(output.size(), CV_8UC3);
+    for( int i = 0; i< contours.size(); i++ )
+    {
+        cv::Scalar color = cv::Scalar(255,0,0);
+        drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, cv::Point());
+    }
+    
+    return output;
+}
+
 // Histograms
 // Equalise the histogram of a channel of a colour image to normalise brightness
 
@@ -50,7 +73,6 @@ cv::Mat ImageProcessor::templateMatching() {
     return rabbit;
 }
 
-// TODO: Example of using the Earth Mover's Distance to compare histograms
 void ImageProcessor::histogramEMD() {
     
     cv::Mat a = cv::imread("a.jpg");

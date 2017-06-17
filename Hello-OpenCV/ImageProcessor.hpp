@@ -18,8 +18,8 @@ class ImageProcessor
 {
 public:
     void histogramEMD();
+    cv::Mat contourFinding();
     cv::Mat backProjection();
     cv::Mat templateMatching();
     cv::Mat histogramEqualize();
-private:
 };

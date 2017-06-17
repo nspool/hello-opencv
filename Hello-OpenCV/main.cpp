@@ -285,7 +285,9 @@ int main(int argc, const char * argv[]) {
 
 //    ip.histogramEMD();
     
-    cv::Mat image = ip.backProjection();
+//    cv::Mat image = ip.backProjection();
+    
+    cv::Mat image = ip.contourFinding();
     
     cv::imshow("title", image);
 
