@@ -287,7 +287,9 @@ int main(int argc, const char * argv[]) {
     
 //    cv::Mat image = ip.backProjection();
     
-    cv::Mat image = ip.connectedComponentAnalysis();
+    cv::Mat image = ip.contourFinding();
+    
+//    cv::Mat image = ip.connectedComponentAnalysis();
     
     cv::imshow("title", image);
 

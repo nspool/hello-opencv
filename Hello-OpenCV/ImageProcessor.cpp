@@ -14,8 +14,9 @@ cv::Mat ImageProcessor::contourFinding() {
     std::vector<cv::Vec4i> hierarchy;
     std::vector<std::vector<cv::Point>> contours;
     cv::Mat output;
-//    cv::Mat rabbitColour = cv::imread("b.jpg");
+    cv::Mat rabbitColour = cv::imread("b.jpg");
     cv::Mat rabbitGrey = cv::imread("b.jpg", cv::IMREAD_GRAYSCALE);
+    auto red = cv::Scalar(0,0,255,0);
 
     cv::Canny(rabbitGrey, output, 120, 240, 7);
     
@@ -27,9 +28,15 @@ cv::Mat ImageProcessor::contourFinding() {
     {
         cv::Scalar color = cv::Scalar(255,0,0);
         drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, cv::Point());
+        
+        // The discovered contours can be used to determine object geometry
+        cv::Rect box = cv::boundingRect(contours[i]);
+        cv::rectangle(rabbitColour, box, red);
     }
     
-    return output;
+
+    
+    return rabbitColour;
 }
 
 // Fast connected component analysis
