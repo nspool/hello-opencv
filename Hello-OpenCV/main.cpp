@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include "ImageProcessor.hpp"
+#include "VideoProcessor.hpp"
 
 std::string titleText = std::string("Hello, OpenCV");
 
@@ -277,7 +278,7 @@ int main(int argc, const char * argv[]) {
 //    houghLines();
 //    watershed();
     
-    auto ip = ImageProcessor();
+//    auto ip = ImageProcessor();
     
 //    auto imageBGR = ip.histogramEqualize();
     
@@ -287,9 +288,15 @@ int main(int argc, const char * argv[]) {
     
 //    cv::Mat image = ip.backProjection();
     
-    cv::Mat image = ip.contourFinding();
+//    cv::Mat image = ip.contourFinding();
     
 //    cv::Mat image = ip.connectedComponentAnalysis();
+    
+    auto vp = VideoProcessor();
+    
+    cv::namedWindow("title", cv::WINDOW_AUTOSIZE);
+    
+    cv::Mat image = vp.backgroundSubstitution();
     
     cv::imshow("title", image);
 

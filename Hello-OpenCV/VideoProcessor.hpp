@@ -13,3 +13,10 @@
 #include "opencv2/opencv.hpp"
 
 #endif /* VideoProcessor_hpp */
+
+class VideoProcessor
+{
+public:
+    cv::Mat backgroundSubstitution();
+private:
+};
