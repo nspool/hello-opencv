@@ -298,7 +298,7 @@ int main(int argc, const char * argv[]) {
     
     cv::Mat image = vp.backgroundSubstitution();
     
-    cv::imshow("title", image);
+//    cv::imshow("title", image);
 
     cv::waitKey();
     
