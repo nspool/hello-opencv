@@ -6,16 +6,12 @@
 //  Copyright © 2017 nspool. All rights reserved.
 //
 
-// # TODO
-// - Put each of the examples in their own classes
-// - 1.mp4: tell exactly on what frame it is different using histogram methods
-
-
 // Because the opencv framework headers don't play well with clang
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
 
 #include <iostream>
+
 #include "ImageProcessor.hpp"
 #include "VideoProcessor.hpp"
 
@@ -67,58 +63,6 @@ void mouseCallback(int event, int x, int y, int flags, void* param) {
         default:
             break;
     }
-}
-
-// Open a video and read it frame-by-frame
-void openVideo() {
-    
-    cv::Mat frame, prevFrame;
-    
-    int frameCount = 0;
-    
-    // NB: create the window *before* opening the video, otherwise will encounter
-    // "current event queue and the main event queue are not the same" bug.
-    cv::namedWindow(titleText);
-    
-    // VideoCapture functor
-    cv::VideoCapture cap("1.mp4");
-    
-    cap >> frame;
-    
-    std::cout << "rows: " << frame.rows << " cols: " << frame.cols << std::endl;
-    
-    // Print out the location of the pixels that have changed between frames
-    
-    while(!frame.empty()) {
-        
-        frameCount++;
-        
-        cv::Mat deltaFrame;
-        
-        if(!prevFrame.empty()) {
-            
-            cv::cvtColor(prevFrame - frame, deltaFrame, CV_BGR2GRAY);
-            
-            int c = cv::countNonZero(deltaFrame);
-            
-            if(c > 0) {
-                std::cout << frameCount << std::endl;
-                std::vector<cv::Point> locations;
-                cv::findNonZero(deltaFrame, locations);
-                for(cv::Point& l : locations) {
-                    std::cout << l << std::endl;
-                }
-            }
-            cv::imshow(titleText, deltaFrame);
-            cv::waitKey();
-        }
-        
-        frame.copyTo(prevFrame);
-        cap >> frame;
-    }
-    
-    std::cout << frameCount << std::endl;
-    
 }
 
 
@@ -272,33 +216,29 @@ int main(int argc, const char * argv[]) {
         std::cerr << "Cannot start window thread. Continuing.." << std::endl;
     }
     
-    // openImages();
-    // openVideo();
-    // removeBackground();
-//    houghLines();
-//    watershed();
+    // Image processing examples
     
-//    auto ip = ImageProcessor();
+    //    auto ip = ImageProcessor();
+    //    auto imageBGR = ip.histogramEqualize();
+    //    cv::Mat image = ip.templateMatching();
+    //    ip.histogramEMD();
+    //    cv::Mat image = ip.backProjection();
+    //    cv::Mat image = ip.contourFinding();
+    //    cv::Mat image = ip.connectedComponentAnalysis();
+    //    removeBackground();
+    //    houghLines();
+    //    watershed();
     
-//    auto imageBGR = ip.histogramEqualize();
-    
-//    cv::Mat image = ip.templateMatching();
+    // Video processing examples
 
-//    ip.histogramEMD();
+    // NB: create the window *before* opening the video, otherwise will encounter
+    // "current event queue and the main event queue are not the same" bug.
     
-//    cv::Mat image = ip.backProjection();
-    
-//    cv::Mat image = ip.contourFinding();
-    
-//    cv::Mat image = ip.connectedComponentAnalysis();
+    cv::namedWindow(titleText);
     
     auto vp = VideoProcessor();
     
-    cv::namedWindow("title", cv::WINDOW_AUTOSIZE);
-    
     cv::Mat image = vp.backgroundSubstitution();
-    
-//    cv::imshow("title", image);
 
     cv::waitKey();
     

@@ -10,13 +10,16 @@
 #define VideoProcessor_hpp
 
 #include <stdio.h>
-#include "opencv2/opencv.hpp"
+#include "main.hpp"
 
-#endif /* VideoProcessor_hpp */
+#include "opencv2/opencv.hpp"
 
 class VideoProcessor
 {
 public:
     cv::Mat backgroundSubstitution();
+    void openVideo();
 private:
 };
+
+#endif /* VideoProcessor_hpp */

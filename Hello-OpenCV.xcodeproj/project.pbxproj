@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7324BD001F67EB8F007091FD /* trees.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7324BCFE1F67E5E2007091FD /* trees.mp4 */; };
 		732DCFE81EDAD6CE009AC9C6 /* template.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 732DCFE71EDAD6C5009AC9C6 /* template.png */; };
 		7333230B1EA8CDC2009C807E /* 1.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7333230A1EA8CD4D009C807E /* 1.mp4 */; };
 		73457BCC1F0B9F3000D56A09 /* trees.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 73457BCB1F0B9F2700D56A09 /* trees.mp4 */; };
@@ -37,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7324BCFE1F67E5E2007091FD /* trees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = trees.mp4; sourceTree = "<group>"; };
+		7324BCFF1F67E971007091FD /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		732DCFE71EDAD6C5009AC9C6 /* template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = template.png; sourceTree = "<group>"; };
 		7333230A1EA8CD4D009C807E /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
 		73457BCB1F0B9F2700D56A09 /* trees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = trees.mp4; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 			children = (
 				73B0AC101ED443E400FCED90 /* Image Samples */,
 				73B0AC111ED443EB00FCED90 /* Video Samples */,
+				7324BCFF1F67E971007091FD /* main.hpp */,
 				7393D01D1E51366D0012389A /* main.cpp */,
 				73B0AC121ED4442E00FCED90 /* VideoProcessor.cpp */,
 				73B0AC131ED4442E00FCED90 /* VideoProcessor.hpp */,
@@ -116,6 +120,7 @@
 			children = (
 				73457BCB1F0B9F2700D56A09 /* trees.mp4 */,
 				7333230A1EA8CD4D009C807E /* 1.mp4 */,
+				7324BCFE1F67E5E2007091FD /* trees.mp4 */,
 			);
 			name = "Video Samples";
 			sourceTree = "<group>";
