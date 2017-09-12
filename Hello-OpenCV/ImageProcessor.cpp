@@ -33,9 +33,6 @@ cv::Mat ImageProcessor::contourFinding() {
         cv::Rect box = cv::boundingRect(contours[i]);
         cv::rectangle(rabbitColour, box, red);
     }
-    
-
-    
     return rabbitColour;
 }
 

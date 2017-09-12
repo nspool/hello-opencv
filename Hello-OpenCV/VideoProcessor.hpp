@@ -10,6 +10,15 @@
 #define VideoProcessor_hpp
 
 #include <stdio.h>
+#include "main.hpp"
+
 #include "opencv2/opencv.hpp"
+
+class VideoProcessor
+{
+public:
+    // Open a video and read it frame-by-frame
+    void openVideo();
+};
 
 #endif /* VideoProcessor_hpp */

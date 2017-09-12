@@ -10,9 +10,9 @@
 #define ImageProcessor_hpp
 
 #include <stdio.h>
-#include "opencv2/opencv.hpp"
+#include "main.hpp"
 
-#endif /* ImageProcessor_hpp */
+#include "opencv2/opencv.hpp"
 
 class ImageProcessor
 {
@@ -24,3 +24,5 @@ public:
     cv::Mat histogramEqualize();
     cv::Mat connectedComponentAnalysis();
 };
+
+#endif /* ImageProcessor_hpp */
