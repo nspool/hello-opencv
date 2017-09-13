@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7324BD001F67EB8F007091FD /* trees.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7324BCFE1F67E5E2007091FD /* trees.mp4 */; };
 		732DCFE81EDAD6CE009AC9C6 /* template.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 732DCFE71EDAD6C5009AC9C6 /* template.png */; };
 		7333230B1EA8CDC2009C807E /* 1.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7333230A1EA8CD4D009C807E /* 1.mp4 */; };
-		73457BCC1F0B9F3000D56A09 /* trees.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 73457BCB1F0B9F2700D56A09 /* trees.mp4 */; };
 		739048971E890E1200EED520 /* a.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 739048951E890D2600EED520 /* a.jpg */; };
 		739048981E890E1200EED520 /* b.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 739048961E890D4400EED520 /* b.jpg */; };
 		7393D01E1E51366D0012389A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7393D01D1E51366D0012389A /* main.cpp */; };
@@ -26,7 +24,6 @@
 			dstPath = .;
 			dstSubfolderSpec = 16;
 			files = (
-				73457BCC1F0B9F3000D56A09 /* trees.mp4 in CopyFiles */,
 				73F59DD81EDC2F4C00A3E0A9 /* canvas.png in CopyFiles */,
 				732DCFE81EDAD6CE009AC9C6 /* template.png in CopyFiles */,
 				7333230B1EA8CDC2009C807E /* 1.mp4 in CopyFiles */,
@@ -42,7 +39,6 @@
 		7324BCFF1F67E971007091FD /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		732DCFE71EDAD6C5009AC9C6 /* template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = template.png; sourceTree = "<group>"; };
 		7333230A1EA8CD4D009C807E /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
-		73457BCB1F0B9F2700D56A09 /* trees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = trees.mp4; sourceTree = "<group>"; };
 		739048951E890D2600EED520 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 		739048961E890D4400EED520 /* b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b.jpg; sourceTree = "<group>"; };
 		7393D01A1E51366D0012389A /* Hello-OpenCV */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Hello-OpenCV"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +114,6 @@
 		73B0AC111ED443EB00FCED90 /* Video Samples */ = {
 			isa = PBXGroup;
 			children = (
-				73457BCB1F0B9F2700D56A09 /* trees.mp4 */,
 				7333230A1EA8CD4D009C807E /* 1.mp4 */,
 				7324BCFE1F67E5E2007091FD /* trees.mp4 */,
 			);

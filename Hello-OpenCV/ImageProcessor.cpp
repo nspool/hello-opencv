@@ -9,6 +9,128 @@
 #include <vector>
 #include "ImageProcessor.hpp"
 
+void ImageProcessor::removeBackground() {
+    
+    // load test image
+    cv::Mat image = cv::imread("b.jpg", cv::IMREAD_GRAYSCALE);
+    //    cv::Mat colourImage = cv::imread("b.jpg");
+    
+    if(image.empty()){
+        std::cerr << "Cannot load images. Aborting." << std::endl;
+        return;
+    }
+    
+    // Set a threshold that leaves only the outline of the foreground objects
+    //    cv::threshold(image, image, 10, 255, CV_THRESH_BINARY);
+    cv::adaptiveThreshold(image, image, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY, 21, 50);
+    //    cv::fastNlMeansDenoising(image, image);
+    cv::Mat k = cv::Mat::eye(2, 2, 0);
+    cv::dilate(image, image, k);
+    
+    // Flood Fill?
+    
+    cv::imshow(titleText_, image);
+    cv::waitKey();
+}
+
+
+// Hough Lines
+
+void ImageProcessor::houghLines() {
+    
+    cv::Mat imageIn, imageOut;
+    
+    imageIn = cv::imread("a.jpg", cv::IMREAD_COLOR);
+    
+    cv::cvtColor(imageIn, imageOut, cv::COLOR_BGR2GRAY);
+    
+    std::vector<cv::Vec4i> lines;
+    
+    cv::Canny(imageOut, imageOut, 50, 200, 3);
+    
+    cv::HoughLinesP(imageOut, lines, 1, CV_PI/180, 10, 10, 0 );
+    
+    for(auto &l: lines) {
+        cv::line(imageIn, cv::Point(l[0], l[1]), cv::Point(l[2], l[3]), cv::Scalar(0,0,255), 1, cv::LineTypes::LINE_4);
+    }
+    
+    cv::imshow(titleText_, imageIn);
+
+}
+
+
+void ImageProcessor::watershed() {
+    
+    cv::Mat imageIn, imageProc, markers;
+    
+    imageIn = cv::imread("a.jpg");
+    
+    imageProc.create(imageIn.rows, imageIn.cols, CV_8UC3);
+    
+    markers.create(imageIn.rows, imageIn.cols, CV_32SC1);
+    
+    cv::cvtColor(imageIn, imageProc, CV_8UC3);
+    
+    cv::watershed(imageIn, markers);
+    
+    cv::imshow(titleText_, markers);
+}
+
+void ImageProcessor::mouseCallback(int event, int x, int y, int flags, void* param) {
+    switch(event) {
+        case cv::EVENT_LBUTTONUP:
+            return;
+        default:
+            break;
+    }
+}
+
+void ImageProcessor::openImages() {
+    
+    // Colours
+    cv::Mat imgBackground = cv::imread("a.jpg");
+    cv::Mat imgSprite = cv::imread("b.jpg");
+    if(imgBackground.empty() || imgSprite.empty()){
+        std::cerr << "Cannot load images. Aborting." << std::endl;
+        return;
+    }
+    
+    // For borders
+    auto white = cv::Scalar(255,255,255,0);
+    auto red = cv::Scalar(0,0,255,0);
+    
+    cv::Mat imgOutput;
+    
+    cv::transpose(imgSprite, imgOutput);
+    cv::Mat roi1(imgBackground, cv::Rect(10,10,259,258));
+    cv::Mat roi2(imgOutput, cv::Rect(0,0,259,258));
+    
+    // Blend the sprite onto the background image
+    
+    cv::addWeighted(roi1, 0.5, roi2, 0.5, 0.0, roi1);
+    
+    // Put a border around the transposed sprite
+    
+    cv::rectangle(imgBackground, cv::Point(10,10), cv::Point(269,268), white);
+    
+    // Draw the title text and place a red border around it
+    
+    cv::Point textPoint = cv::Point(300,30);
+    cv::putText(imgBackground, titleText_, textPoint, 0, 1, 0, 2, 4, false);
+    int textBaseline = 0;
+    cv::Size textSize = cv::getTextSize(titleText_, 0, 1, 2, &textBaseline);
+    textPoint.y = textPoint.y + textBaseline;
+    cv::rectangle(imgBackground, textPoint, cv::Point(textPoint.x + textSize.width, textPoint.y - textBaseline - textSize.height - 2), red);
+    
+    cv::imshow(titleText_, imgBackground);
+    
+    // Mouse callback
+    cv::setMouseCallback(titleText_, mouseCallback, nullptr);
+    
+    // Wait for any keypress and then close
+    cv::waitKey();
+}
+
 cv::Mat ImageProcessor::contourFinding() {
     
     std::vector<cv::Vec4i> hierarchy;

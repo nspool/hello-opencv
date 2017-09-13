@@ -17,12 +17,19 @@
 class ImageProcessor
 {
 public:
+    void removeBackground();
+    void houghLines();
+    void watershed();
+    void openImages();
     void histogramEMD();
     cv::Mat contourFinding();
     cv::Mat backProjection();
     cv::Mat templateMatching();
     cv::Mat histogramEqualize();
     cv::Mat connectedComponentAnalysis();
+private:
+    static void mouseCallback(int event, int x, int y, int flags, void* param);
+    std::string titleText_ = std::string("Hello, OpenCV");
 };
 
 #endif /* ImageProcessor_hpp */
