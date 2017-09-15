@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		731270931F6BDDBF00E209C9 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 731270911F6BDDBF00E209C9 /* Helper.cpp */; };
 		732DCFE81EDAD6CE009AC9C6 /* template.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 732DCFE71EDAD6C5009AC9C6 /* template.png */; };
 		7333230B1EA8CDC2009C807E /* 1.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7333230A1EA8CD4D009C807E /* 1.mp4 */; };
 		739048971E890E1200EED520 /* a.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 739048951E890D2600EED520 /* a.jpg */; };
@@ -35,6 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		731270911F6BDDBF00E209C9 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
+		731270921F6BDDBF00E209C9 /* Helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Helper.hpp; sourceTree = "<group>"; };
 		7324BCFE1F67E5E2007091FD /* trees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = trees.mp4; sourceTree = "<group>"; };
 		7324BCFF1F67E971007091FD /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		732DCFE71EDAD6C5009AC9C6 /* template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = template.png; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				73B0AC131ED4442E00FCED90 /* VideoProcessor.hpp */,
 				73B0AC151ED4444200FCED90 /* ImageProcessor.cpp */,
 				73B0AC161ED4444200FCED90 /* ImageProcessor.hpp */,
+				731270911F6BDDBF00E209C9 /* Helper.cpp */,
+				731270921F6BDDBF00E209C9 /* Helper.hpp */,
 			);
 			path = "Hello-OpenCV";
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				73B0AC171ED4444200FCED90 /* ImageProcessor.cpp in Sources */,
 				73B0AC141ED4442E00FCED90 /* VideoProcessor.cpp in Sources */,
 				7393D01E1E51366D0012389A /* main.cpp in Sources */,
+				731270931F6BDDBF00E209C9 /* Helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
