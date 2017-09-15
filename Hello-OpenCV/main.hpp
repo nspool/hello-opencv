@@ -10,6 +10,7 @@
 #define main_h
 
 #include <iostream>
+#include "opencv2/opencv.hpp"
 
 
 #endif /* main_h */

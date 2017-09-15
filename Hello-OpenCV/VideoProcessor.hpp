@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include "main.hpp"
 
-#include "opencv2/opencv.hpp"
 
 class VideoProcessor
 {
