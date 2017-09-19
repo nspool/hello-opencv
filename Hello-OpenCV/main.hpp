@@ -9,8 +9,12 @@
 #ifndef main_h
 #define main_h
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
+
 #include <iostream>
 #include "opencv2/opencv.hpp"
 
+#pragma clang diagnostic pop
 
 #endif /* main_h */

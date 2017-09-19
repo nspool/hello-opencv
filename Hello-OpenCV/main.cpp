@@ -6,10 +6,6 @@
 //  Copyright © 2017 nspool. All rights reserved.
 //
 
-// Because the opencv framework headers don't play well with clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdocumentation"
-
 #include <iostream>
 
 #include "ImageProcessor.hpp"
