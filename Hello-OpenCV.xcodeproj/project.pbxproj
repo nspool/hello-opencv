@@ -46,6 +46,8 @@
 		739048961E890D4400EED520 /* b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b.jpg; sourceTree = "<group>"; };
 		7393D01A1E51366D0012389A /* Hello-OpenCV */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Hello-OpenCV"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7393D01D1E51366D0012389A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		739FF84C1F7675C100AC749F /* CodeBook.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CodeBook.hpp; sourceTree = "<group>"; };
+		739FF84D1F7675C200AC749F /* CodeElement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CodeElement.hpp; sourceTree = "<group>"; };
 		73B0AC121ED4442E00FCED90 /* VideoProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoProcessor.cpp; sourceTree = "<group>"; };
 		73B0AC131ED4442E00FCED90 /* VideoProcessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VideoProcessor.hpp; sourceTree = "<group>"; };
 		73B0AC151ED4444200FCED90 /* ImageProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageProcessor.cpp; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 				73B0AC111ED443EB00FCED90 /* Video Samples */,
 				7324BCFF1F67E971007091FD /* main.hpp */,
 				7393D01D1E51366D0012389A /* main.cpp */,
+				739FF84D1F7675C200AC749F /* CodeElement.hpp */,
+				739FF84C1F7675C100AC749F /* CodeBook.hpp */,
 				73B0AC121ED4442E00FCED90 /* VideoProcessor.cpp */,
 				73B0AC131ED4442E00FCED90 /* VideoProcessor.hpp */,
 				73B0AC151ED4444200FCED90 /* ImageProcessor.cpp */,
