@@ -167,3 +167,47 @@ void VideoProcessor::openVideo() {
     
     std::cout << frameCount << std::endl;
 }
+
+void VideoProcessor::processVideo(std::string videoFilename) {
+    
+    cv::VideoCapture capture(videoFilename);
+    
+    if(!capture.isOpened()){
+
+        std::cerr << "Unable to open video file: " << videoFilename << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    
+    cv::Size s(capture.get(CAP_PROP_FRAME_WIDTH), capture.get(CAP_PROP_FRAME_HEIGHT));
+    
+    std::cerr << s.width << '\n';
+    std::cerr << s.height << '\n';
+    cv::VideoWriter writer ("Video.avi",CV_FOURCC('X','2','6','4'), 10, s, true);
+    
+    while(true){
+
+        if(!capture.read(frame)) {
+            std::cerr << "Unable to read next frame.\n";
+            exit(EXIT_FAILURE);
+        }
+        
+        //update the background model
+        pMOG2->apply(frame, fgMaskMOG2);
+        // apply the operation
+        Mat element = getStructuringElement(MORPH_RECT, Size(9, 9), Point(1,1) );
+        Mat mask;
+        morphologyEx(fgMaskMOG2, mask, CV_MOP_OPEN, element);
+        dilate(mask, mask, element, Point(-1,-1), 5);
+        //        morphologyEx(mask, mask, CV_MOP_CLOSE, element);
+        
+        
+        //show the current frame and the fg masks
+        Mat outputFrame;
+        frame.copyTo(outputFrame, mask);
+        writer << outputFrame;
+    }
+
+    writer.release();
+    
+    capture.release();
+}

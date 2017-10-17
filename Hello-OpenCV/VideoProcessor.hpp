@@ -18,6 +18,7 @@ class VideoProcessor
 public:
     cv::Mat backgroundSubstitution();
     void openVideo();
+    void processVideo(std::string videoFilename);
 private:
 };
 

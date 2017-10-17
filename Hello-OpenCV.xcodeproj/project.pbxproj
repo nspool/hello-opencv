@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		731270931F6BDDBF00E209C9 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 731270911F6BDDBF00E209C9 /* Helper.cpp */; };
+		7312F2311F960AEE005FD2C8 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7312F2301F960AEE005FD2C8 /* opencv2.framework */; };
 		732DCFE81EDAD6CE009AC9C6 /* template.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 732DCFE71EDAD6C5009AC9C6 /* template.png */; };
 		7333230B1EA8CDC2009C807E /* 1.mp4 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7333230A1EA8CD4D009C807E /* 1.mp4 */; };
 		739048971E890E1200EED520 /* a.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 739048951E890D2600EED520 /* a.jpg */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		731270911F6BDDBF00E209C9 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helper.cpp; sourceTree = "<group>"; };
 		731270921F6BDDBF00E209C9 /* Helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Helper.hpp; sourceTree = "<group>"; };
+		7312F2301F960AEE005FD2C8 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../../../Library/Frameworks/opencv2.framework; sourceTree = "<group>"; };
 		7324BCFE1F67E5E2007091FD /* trees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = trees.mp4; sourceTree = "<group>"; };
 		7324BCFF1F67E971007091FD /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		732DCFE71EDAD6C5009AC9C6 /* template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = template.png; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7312F2311F960AEE005FD2C8 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 		7393D0241E5136910012389A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7312F2301F960AEE005FD2C8 /* opencv2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,6 +304,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = (
@@ -330,6 +338,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = (
