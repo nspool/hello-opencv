@@ -42,7 +42,8 @@ int main(int argc, const char * argv[]) {
     
     auto vp = VideoProcessor();
     
-    cv::Mat image = vp.backgroundSubstitution();
+//    cv::Mat image = vp.backgroundSubstitution();
+    vp.processVideo("trees.mp4");
 
     cv::waitKey();
     

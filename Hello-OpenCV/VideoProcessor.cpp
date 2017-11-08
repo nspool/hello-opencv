@@ -170,6 +170,11 @@ void VideoProcessor::openVideo() {
 
 void VideoProcessor::processVideo(std::string videoFilename) {
     
+    cv::Mat frame;
+    cv::Mat fgMaskMOG2;
+    
+    //MOG2 Background subtractor
+    cv::Ptr<cv::BackgroundSubtractor> pMOG2 = cv::createBackgroundSubtractorMOG2();
     cv::VideoCapture capture(videoFilename);
     
     if(!capture.isOpened()){
@@ -178,36 +183,39 @@ void VideoProcessor::processVideo(std::string videoFilename) {
         exit(EXIT_FAILURE);
     }
     
-    cv::Size s(capture.get(CAP_PROP_FRAME_WIDTH), capture.get(CAP_PROP_FRAME_HEIGHT));
+    cv::Size s(capture.get(cv::CAP_PROP_FRAME_WIDTH), capture.get(cv::CAP_PROP_FRAME_HEIGHT));
     
     std::cerr << s.width << '\n';
     std::cerr << s.height << '\n';
-    cv::VideoWriter writer ("Video.avi",CV_FOURCC('X','2','6','4'), 10, s, true);
+//    cv::VideoWriter writer ("Video.avi",CV_FOURCC('X','2','6','4'), 10, s, true);
     
     while(true){
 
         if(!capture.read(frame)) {
             std::cerr << "Unable to read next frame.\n";
-            exit(EXIT_FAILURE);
+            break;
         }
         
         //update the background model
         pMOG2->apply(frame, fgMaskMOG2);
         // apply the operation
-        Mat element = getStructuringElement(MORPH_RECT, Size(9, 9), Point(1,1) );
-        Mat mask;
+        cv::Mat element = getStructuringElement(cv::MORPH_RECT, cv::Size(9, 9), cv::Point(1,1) );
+        cv::Mat mask;
         morphologyEx(fgMaskMOG2, mask, CV_MOP_OPEN, element);
-        dilate(mask, mask, element, Point(-1,-1), 5);
+        dilate(mask, mask, element, cv::Point(-1,-1), 5);
         //        morphologyEx(mask, mask, CV_MOP_CLOSE, element);
         
         
         //show the current frame and the fg masks
-        Mat outputFrame;
+        cv::Mat outputFrame;
         frame.copyTo(outputFrame, mask);
-        writer << outputFrame;
+        cv::imshow("Hello, OpenCV", outputFrame);
+        cv::waitKey();
+
+        // writer << outputFrame;
     }
 
-    writer.release();
+//    writer.release();
     
     capture.release();
 }
