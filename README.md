@@ -1,6 +1,10 @@
 # hello-opencv
 
-Experiments with OpenCV 3. C++11 in Xcode 8. 
+Experiments with OpenCV 3. C++11 in Xcode 9. 
+
+# Prerequisites
+
+This project assumes that OpenCV 3 has been built from source and is installed at /usr/local
 
 # TODO
 
