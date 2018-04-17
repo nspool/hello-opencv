@@ -6,6 +6,14 @@ Experiments with OpenCV 3. C++11 in Xcode 9.
 
 This project assumes that OpenCV 3 has been built from source and is installed at /usr/local
 
+# BUILD
+
+    cmake ..
+
+OR:
+
+    cmake -DOpenCV_DIR=C:/Opencv/build -A x64 ..
+	  
 # TODO
 
 - Refactor each of the samples into their own class
