@@ -4,6 +4,8 @@ project( Hello-OpenCV )
 find_package( OpenCV REQUIRED )
 file(GLOB SOURCES ${PROJECT_NAME}/*.cpp)
 file(GLOB HEADERS ${PROJECT_NAME}/*.hpp)
+file(GLOB RESOURCES ${PROJECT_NAME}/*mp4)
 add_executable(Hello-OpenCV ${SOURCES} ${HEADERS} ${RESOURCES}) 
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+file(COPY ${RESOURCES} DESTINATION ${CMAKE_BINARY_DIR})
 
