@@ -8,4 +8,3 @@ file(GLOB VIDEOS ${PROJECT_NAME}/*mp4)
 add_executable(Hello-OpenCV ${SOURCES} ${HEADERS}) 
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 file(COPY ${VIDEOS} DESTINATION ${CMAKE_BINARY_DIR})
->>>>>>> Stashed changes
