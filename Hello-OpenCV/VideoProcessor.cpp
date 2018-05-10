@@ -7,6 +7,8 @@
 //
 
 #include <vector>
+#include <chrono>
+#include <thread>
 
 #include "VideoProcessor.hpp"
 
@@ -210,7 +212,8 @@ void VideoProcessor::processVideo(std::string videoFilename) {
         cv::Mat outputFrame;
         frame.copyTo(outputFrame, mask);
         cv::imshow("Hello, OpenCV", outputFrame);
-        cv::waitKey();
+		// std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		cv::waitKey(1);
 
         // writer << outputFrame;
     }
