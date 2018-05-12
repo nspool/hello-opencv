@@ -149,7 +149,7 @@ void VideoProcessor::openVideo() {
             
             cv::cvtColor(prevFrame - frame, deltaFrame, CV_BGR2GRAY);
             
-            int c = cv::countNonZero(deltaFrame);
+            auto c = cv::countNonZero(deltaFrame);
             
             if(c > 0) {
                 std::cout << frameCount << std::endl;

@@ -20,7 +20,7 @@ void Helper::createSparse() {
     int size[] = {10,10};
     cv::SparseMat sm(2,size, CV_32F);
     
-    for(int i=0; i<10; i++) {
+    for(auto i=0; i<10; i++) {
         int idx[2];
         idx[0] = size[0] * rand();
         idx[1] = size[1] * rand();

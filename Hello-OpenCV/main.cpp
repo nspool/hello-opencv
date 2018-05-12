@@ -15,10 +15,14 @@ std::string titleText = std::string("Hello, OpenCV");
 
 int main(int argc, const char * argv[]) {
     
+	std::string filename{ "trees.mp4" };
+
     // Display the window and draw the image
     if(cv::startWindowThread() != 0) {
         std::cerr << "Cannot start window thread. Continuing.." << std::endl;
     }
+
+	unsigned thisTest = 0;
     
     // Image processing examples
     
